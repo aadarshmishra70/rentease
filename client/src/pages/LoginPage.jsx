@@ -4,6 +4,8 @@ import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import toast from 'react-hot-toast';
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -47,6 +49,25 @@ const LoginPage = () => {
     }
   }
 
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const res = await axios.post('/api/auth/google-login', {
+        token: credentialResponse.credential
+      });
+      
+      // Save the JWT token to localStorage or your state management solution
+      localStorage.setItem('token', res.data.token);
+      
+      // Update your app state with the user info
+      // For example: setUser(res.data.user);
+      
+      console.log('Logged in successfully', res.data);
+    } catch (error) {
+      console.error('Login failed', error.response.data);
+    }
+  };
+
   return (
     <div className="login">
       <div className="login_content">
@@ -69,6 +90,12 @@ const LoginPage = () => {
         </form>
         <a href="/register">Don't have an account? Sign In Here</a>
       </div>
+      <GoogleLogin
+      onSuccess={handleGoogleSuccess}
+      onError={() => {
+        console.log('Login Failed');
+      }}
+    />
     </div>
   );
 };

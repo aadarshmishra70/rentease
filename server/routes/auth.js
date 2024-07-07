@@ -98,4 +98,50 @@ router.post("/login", async (req, res) => {
   }
 })
 
+
+router.post("/google-login", async (req, res) => {
+  try {
+    const { token } = req.body;
+    
+    // Verify the Google token
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    
+    const { name, email, picture, sub } = ticket.getPayload();
+
+    // Check if user exists
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      // Create a new user if they don't exist
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(Math.random().toString(36).slice(-8), salt);
+
+      user = new User({
+        firstName: name.split(' ')[0],
+        lastName: name.split(' ').slice(1).join(' '),
+        email,
+        profileImagePath: picture,
+        password: hashedPassword,
+        googleId: sub
+      });
+      await user.save();
+    }
+
+    // Generate JWT token
+    const jwtToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    // Remove password from user object
+    const userObject = user.toObject();
+    delete userObject.password;
+
+    res.status(200).json({ token: jwtToken, user: userObject });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error', error: err.message });
+  }
+});
+
 module.exports = router
