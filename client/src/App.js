@@ -11,6 +11,7 @@ import PropertyList from "./pages/PropertyList";
 import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/:userId/reservations" element={<ReservationList />} />
         </Routes>
       </BrowserRouter>
+      <Toaster />
     </div>
   );
 }

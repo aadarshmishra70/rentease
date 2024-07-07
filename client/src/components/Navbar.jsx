@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "../styles/Navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { setLogout } from "../redux/state";
+import toast from "react-hot-toast";
 
 
 const Navbar = () => {
@@ -89,6 +90,7 @@ const Navbar = () => {
               to="/login"
               onClick={() => {
                 dispatch(setLogout());
+                toast.success("Logged Out!")
               }}
             >
               Log Out

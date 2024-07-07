@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import "../styles/Register.scss";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -45,9 +46,14 @@ const RegisterPage = () => {
       })
 
       if (response.ok) {
+        toast.success("Registration successful")
         navigate("/login")
       }
+      else{
+        toast.error("Registration failed")
+      }
     } catch (err) {
+      toast.error("Registration failed")
       console.log("Registration failed", err.message)
     }
   }

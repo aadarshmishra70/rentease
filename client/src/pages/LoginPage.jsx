@@ -3,6 +3,7 @@ import "../styles/Login.scss"
 import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import toast from 'react-hot-toast';
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -24,20 +25,24 @@ const LoginPage = () => {
         body: JSON.stringify({ email, password })
       })
 
-      /* Get data after fetching */
-      const loggedIn = await response.json()
-
-      if (loggedIn) {
+      console.log("Logg in status", response.status)
+      if(response.status === 200) {
+        const loggedIn = await response.json()
         dispatch (
           setLogin({
             user: loggedIn.user,
             token: loggedIn.token
           })
         )
+        toast.success("l")
         navigate("/")
       }
-
+      if(response.status === 401 || response.status === 404) {
+        toast.error("Username or password is incorrect")
+        return
+      }
     } catch (err) {
+      toast.error("Login failed")
       console.log("Login failed", err.message)
     }
   }
