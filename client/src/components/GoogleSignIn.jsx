@@ -14,7 +14,7 @@ const GoogleSignIn = ({ buttonText }) => {
         onSuccess: async (tokenResponse) => {
             console.log("token", tokenResponse);
             try {
-                debugger
+                
                 const res = await fetch("http://localhost:3001/auth/google-signup", {
                     method: "POST",
                     headers: {
