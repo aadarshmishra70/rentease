@@ -4,11 +4,11 @@ const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      default: "",
     },
     lastName: {
       type: String,
-      required: true,
+      default: "",
     },
     email: {
       type: String,
@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      default: "",
     },
     profileImagePath: {
       type: String,
@@ -38,7 +38,11 @@ const UserSchema = new mongoose.Schema(
     reservationList: {
       type: Array,
       default: [],
-    }
+    },
+    provider: {
+      type: String,
+      default: "password",
+    },
   },
   { timestamps: true }
 )

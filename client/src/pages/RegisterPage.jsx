@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 import "../styles/Register.scss";
 import toast from "react-hot-toast";
+import GoogleSignIn from "../components/GoogleSignIn";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -129,6 +130,7 @@ const RegisterPage = () => {
           <button type="submit" disabled={!passwordMatch}>REGISTER</button>
         </form>
         <a href="/login">Already have an account? Log In Here</a>
+        <GoogleSignIn buttonText="Signup with Google" />
       </div>
     </div>
   );
