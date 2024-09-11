@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import "../styles/ListingDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { facilities } from "../data";
-
+import toast from 'react-hot-toast';
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import Loader from "../components/Loader";
 import Navbar from "../components/Navbar";
 import { useSelector } from "react-redux";
-import Footer from "../components/Footer"
+import Footer from "../components/Footer";
 
 const ListingDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -38,8 +38,7 @@ const ListingDetails = () => {
     getListingDetails();
   }, []);
 
-  console.log(listing)
-
+  console.log(listing);
 
   /* BOOKING CALENDAR */
   const [dateRange, setDateRange] = useState([
@@ -57,12 +56,11 @@ const ListingDetails = () => {
 
   const start = new Date(dateRange[0].startDate);
   const end = new Date(dateRange[0].endDate);
-  const dayCount = Math.round(end - start) / (1000 * 60 * 60 * 24); // Calculate the difference in day unit
+  const dayCount = Math.round((end - start) / (1000 * 60 * 60 * 24)); // Calculate the difference in days
 
   /* SUBMIT BOOKING */
-  const customerId = useSelector((state) => state?.user?._id)
-
-  const navigate = useNavigate()
+  const customerId = useSelector((state) => state?.user?._id);
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     try {
@@ -73,30 +71,38 @@ const ListingDetails = () => {
         startDate: dateRange[0].startDate.toDateString(),
         endDate: dateRange[0].endDate.toDateString(),
         totalPrice: listing.price * dayCount,
-      }
+      };
 
       const response = await fetch("http://localhost:3001/bookings/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(bookingForm)
-      })
+        body: JSON.stringify(bookingForm),
+      });
 
       if (response.ok) {
-        navigate(`/${customerId}/trips`)
+        // Show success toast notification
+        toast.success("Booking Successful!");
+        // Redirect the user to their trips page
+        navigate(`/${customerId}/trips`);
+      } else {
+        // Show error toast notification if the booking fails
+        toast.error("Booking failed. Please try again.");
       }
     } catch (err) {
-      console.log("Submit Booking Failed.", err.message)
+      console.log("Submit Booking Failed.", err.message);
+      // Show error toast notification on exception
+      toast.error("An error occurred. Please try again.");
     }
-  }
+  };
 
   return loading ? (
     <Loader />
   ) : (
     <>
       <Navbar />
-      
+
       <div className="listing-details">
         <div className="title">
           <h1>{listing.title}</h1>

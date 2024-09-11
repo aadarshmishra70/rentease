@@ -2,6 +2,7 @@ import "../styles/CreateListing.scss";
 import Navbar from "../components/Navbar";
 import { categories, types, facilities } from "../data";
 
+import toast from 'react-hot-toast';
 import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 import variables from "../styles/variables.scss";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
@@ -134,6 +135,7 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
+        toast.success("Property Listed Successfull  !");
         navigate("/");
       }
     } catch (err) {
