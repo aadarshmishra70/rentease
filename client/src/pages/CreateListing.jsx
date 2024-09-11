@@ -460,6 +460,10 @@ const CreateListing = () => {
               </Droppable>
             </DragDropContext>
 
+            
+
+            
+
             <h3>What make your place attractive and exciting?</h3>
             <div className="description">
               <p>Title</p>
@@ -499,7 +503,7 @@ const CreateListing = () => {
                 required
               />
               <p>Now, set your PRICE</p>
-              <span>$</span>
+              <span>Rs.</span>
               <input
                 type="number"
                 placeholder="100"
@@ -509,6 +513,7 @@ const CreateListing = () => {
                 className="price"
                 required
               />
+              
             </div>
           </div>
 

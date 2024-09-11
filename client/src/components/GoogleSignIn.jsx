@@ -31,7 +31,7 @@ const GoogleSignIn = ({ buttonText }) => {
                             token: loggedIn.token
                         })
                     )
-                    toast.success("l")
+                    toast.success("Login Succssfull  !!")
                     navigate("/")
                 }
                 else {

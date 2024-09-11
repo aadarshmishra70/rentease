@@ -35,7 +35,7 @@ const LoginPage = () => {
             token: loggedIn.token
           })
         )
-        toast.success("l")
+        toast.success("Login Successfull !")
         navigate("/")
       }
       if(response.status === 401 || response.status === 404) {

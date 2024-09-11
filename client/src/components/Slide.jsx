@@ -1,4 +1,4 @@
-import "../styles/Slide.scss"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      import "../styles/Slide.scss"
 
 const Slide = () => {
   return (

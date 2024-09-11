@@ -50,20 +50,8 @@ export const categories = [
     icon: <BiWorld />,
   },
   {
-    img: "assets/beach_cat.jpg",
-    label: "Beachfront",
-    icon: <TbBeach />,
-    description: "This property is close to the beach!",
-  },
-  {
-    img: "assets/windmill_cat.webp",
-    label: "Windmills",
-    icon: <GiWindmill />,
-    description: "This property is has windmills!",
-  },
-  {
     img: "assets/modern_cat.webp",
-    label: "Iconic cities",
+    label: "Cities",
     icon: <MdOutlineVilla />,
     description: "This property is modern!",
   },
@@ -75,19 +63,13 @@ export const categories = [
   },
   {
     img: "assets/pool_cat.jpg",
-    label: "Amazing Pools",
+    label: "Swimming Pools",
     icon: <TbPool />,
     description: "This is property has a beautiful pool!",
   },
   {
-    img: "assets/island_cat.webp",
-    label: "Islands",
-    icon: <GiIsland />,
-    description: "This property is on an island!",
-  },
-  {
     img: "assets/lake_cat.webp",
-    label: "Lakefront",
+    label: "LakeSide",
     icon: <GiBoatFishing />,
     description: "This property is near a lake!",
   },
@@ -104,12 +86,6 @@ export const categories = [
     description: "This property is an ancient castle!",
   },
   {
-    img: "assets/cave_cat.jpg",
-    label: "Caves",
-    icon: <GiCaveEntrance />,
-    description: "This property is in a spooky cave!",
-  },
-  {
     img: "assets/camping_cat.jpg",
     label: "Camping",
     icon: <GiForestCamp />,
@@ -117,21 +93,9 @@ export const categories = [
   },
   {
     img: "assets/arctic_cat.webp",
-    label: "Arctic",
+    label: "Intensely Cold",
     icon: <BsSnow />,
     description: "This property is in arctic environment!",
-  },
-  {
-    img: "assets/desert_cat.webp",
-    label: "Desert",
-    icon: <GiCactus />,
-    description: "This property is in the desert!",
-  },
-  {
-    img: "assets/barn_cat.jpg",
-    label: "Barns",
-    icon: <GiBarn />,
-    description: "This property is in a barn!",
   },
   {
     img: "assets/lux_cat.jpg",
@@ -167,11 +131,7 @@ export const facilities = [
     icon: <PiBathtubFill />,
   },
   {
-    name: "Personal care products",
-    icon: <FaPumpSoap />,
-  },
-  {
-    name: "Outdoor shower",
+    name: "Shower",
     icon: <FaShower />,
   },
   {
@@ -193,10 +153,6 @@ export const facilities = [
   {
     name: "TV",
     icon: <PiTelevisionFill />,
-  },
-  {
-    name: "Dedicated workspace",
-    icon: <BsPersonWorkspace />
   },
   {
     name: "Air Conditioning",
@@ -237,10 +193,6 @@ export const facilities = [
   {
     name: "Stove",
     icon: <GiToaster />,
-  },
-  {
-    name: "Barbecue grill",
-    icon: <GiBarbecue />,
   },
   {
     name: "Outdoor dining area",

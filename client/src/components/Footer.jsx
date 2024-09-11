@@ -20,13 +20,13 @@ const Footer = () => {
         <h3>Contact</h3>
         <div className="footer_right_info">
           <LocalPhone />
-          <p>+880 1322821558</p>
+          <p>+880 1321205457</p>
         </div>
         <div className="footer_right_info">
           <Email />
           <p>renteasenepal@support.com</p>
         </div>
-        
+        <img src="/assets/payment.png" alt = "payment" />
       </div>
     </div>
   )

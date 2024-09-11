@@ -47,7 +47,7 @@ const RegisterPage = () => {
       })
 
       if (response.ok) {
-        toast.success("Registration successful")
+        toast.success("Registration successfull !!")
         navigate("/login")
       }
       else{
